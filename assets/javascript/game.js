@@ -4,25 +4,23 @@ var NS = {HP: 718, attack: 61, counterAttack: 65, spawn: "../images/NS_spawn.mp3
 var VS = {HP: 525, attack: 39, counterAttack: 47, spawn: "../images/VS_spawn.mp3"};
 var attackCount = 0;
 
-
-
-$("#heroes").on("click", ".hero", function() {
-    console.log("2")
-    if ($("#radiant").is(":empty")) {
-        console.log("1");
-        //$(".hero").appendTo("#radiant") 
-        audio.Play(this.spawn);
+$(document).ready(function() {
+    $("#heroes").on("click", ".hero", function() {
+        if ($("#radiant").is(":empty")) {
+            console.log("1");
+            $(".hero").appendTo("#radiant") 
+            audio.Play(this.spawn);
+        }
+        else if //(!($("#radiant").is(":empty")) && 
+            ($("#dire").is(":empty")) {
+            //move #hero to dire
+            audio.play(this.spawn);
     }
-    else if //(!($("#radiant").is(":empty")) && 
-        ($("#dire").is(":empty")) {
-        //move #hero to dire
-        audio.play(this.spawn);
-    }
-    else {
-        audio.play("../images/fight.mp3")
-    }
-});
-
+        else {
+            //audio.play("../images/fight.mp3")
+        }
+    });
+})
     //if no hero, put into radiant. play sound.
     //else put into  dire, play sound.
 
