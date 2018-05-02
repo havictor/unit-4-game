@@ -8,23 +8,22 @@ var selected
 $(document).ready(function() {
     $("#heroes").on("click", ".hero", function() {
         if ($("#radiant").contents().length == 0) {
-            console.log("empty")
             $(this).appendTo(("#radiant"))
             //audio.Play(this.spawn);
         }
-/*
 
-        else if //(!($("#radiant").is(":empty")) && 
-            ($("#dire").is(":empty")) {
-            //move #hero to dire
-            audio.play(this.spawn);
+
+        else if ($("#dire").contents().length == 0) {
+            $(this).appendTo(("#dire"))
+            //audio.play(this.spawn);
     }
-
+/*
 
         else {
             //audio.play("../images/fight.mp3")
         }
     });
+    
     */
     })
 });
