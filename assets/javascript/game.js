@@ -26,14 +26,11 @@ $(document).ready(function() {
             radiant = $(this).data("data-stats");
             radiant.spawn.play();
         }
-
-         else if ($("#dire").contents().length == 0) {
+        else if ($("#dire").contents().length == 0) {
             $(this).appendTo(("#dire"))
             dire = $(this).data("data-stats");
             dire.spawn.play()
-    }
-
-
+        }
         else {
             fight.play()
         }
@@ -45,26 +42,26 @@ $(document).ready(function() {
         if ($("#radiant").contents().length == 0) {
             alert("Choose Your Hero");
             pick.radiant.play();
-    }
+        }
         else if ($("#dire").contents().length == 0) {
             alert("Choose Your Enemy");
             pick.dire.play();
-    }
+        }
         else {
             attackCount++;
             dire.HP = (dire.HP - (radiant.attack * attackCount));
             if (dire.HP > 0) {
-                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" health remaining.");
+                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" HP remaining.");
                 $("")
             }
             else if (dire.HP <= 0) {
-                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and has been defeated")
+                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and "+dire.Name+" has been defeated")
                 $("#dire").contents().appendTo("#defeated")
                 enemyCount--
             };
             radiant.HP = (radiant.HP - dire.counterAttack);
             if (radiant.HP > 0 && $("#dire").contents().length !== 0) {
-                alert(dire.Name+" attacked back for "+dire.counterAttack+", you have "+radiant.HP+" remaining.")
+                alert(dire.Name+" attacked back for "+dire.counterAttack+" damage, you have "+radiant.HP+" HP remaining.")
             };
             if (enemyCount == 0) {
                 alert ("Radiant Victory!");
@@ -72,7 +69,7 @@ $(document).ready(function() {
                 $("#New").show();
             }
             else if (radiant.HP <= 0) {
-                alert(dire.Name+" attacked back for "+dire.counterAttack+", and has slain you.")
+                alert(dire.Name+" attacked back for "+dire.counterAttack+" damage, and has slain you.")
                 alert("Dire Victory")
                 victory.dire.play();
                 $("#New").show();
