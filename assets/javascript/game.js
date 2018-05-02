@@ -1,7 +1,7 @@
-var Chen = {Name: "Chen", HP: 650, attack: 48, counterAttack: 50, spawn: new Audio("./assets/images/Chen_spawn.mp3")};
-var CM = {Name: "Crystal Maiden", HP: 524, attack: 44, counterAttack: 38, spawn: new Audio("./assets/images/CM_spawn.mp3")};
-var NS = {Name: "Night Stalker", HP: 718, attack: 61, counterAttack: 65, spawn: new Audio("./assets/images/NS_spawn.mp3")};
-var VS = {Name: "Vengeful Spirit", HP: 525, attack: 39, counterAttack: 4700, spawn: new Audio("./assets/images/VS_spawn.mp3")};
+var Chen = {Name: "Chen", HP: 650, attack: 13, counterAttack: 32, spawn: new Audio("./assets/images/Chen_spawn.mp3")};
+var CM = {Name: "Crystal Maiden", HP: 524, attack: 16, counterAttack: 38, spawn: new Audio("./assets/images/CM_spawn.mp3")};
+var NS = {Name: "Night Stalker", HP: 718, attack: 12, counterAttack: 80, spawn: new Audio("./assets/images/NS_spawn.mp3")};
+var VS = {Name: "Vengeful Spirit", HP: 525, attack: 14, counterAttack: 150, spawn: new Audio("./assets/images/VS_spawn.mp3")};
 var fight = new Audio("./assets/images/fight.mp3")
 var victory = {radiant: new Audio("./assets/images/RadiantVictory.mp3"), dire: new Audio("./assets/images/DireVictory.mp3")}
 var radiant = {};
@@ -25,6 +25,7 @@ $(document).ready(function() {
             $(this).appendTo(("#radiant"))
             radiant = $(this).data("data-stats");
             radiant.spawn.play();
+            //$(this && ".health").attr("id", "radiantHealth")
         }
         else if ($("#dire").contents().length == 0) {
             $(this).appendTo(("#dire"))
@@ -52,7 +53,7 @@ $(document).ready(function() {
             dire.HP = (dire.HP - (radiant.attack * attackCount));
             if (dire.HP > 0) {
                 alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" HP remaining.");
-                $("")
+                $("#direHealth").text(dire.HP);
             }
             else if (dire.HP <= 0) {
                 alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and "+dire.Name+" has been defeated")
@@ -62,6 +63,7 @@ $(document).ready(function() {
             radiant.HP = (radiant.HP - dire.counterAttack);
             if (radiant.HP > 0 && $("#dire").contents().length !== 0) {
                 alert(dire.Name+" attacked back for "+dire.counterAttack+" damage, you have "+radiant.HP+" HP remaining.")
+                $("#radiantHealth").text(radiant.HP);
             };
             if (enemyCount == 0) {
                 alert ("Radiant Victory!");
@@ -103,5 +105,4 @@ $(document).ready(function() {
 });
 
 //to do: dynamic numbers of hp
-//to do: balance stats of heroes
 //to do: add juke option if time is available.
