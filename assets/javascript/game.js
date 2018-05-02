@@ -9,20 +9,23 @@ var selected;
 var enemyCount = 4;
 
 $(document).ready(function() {
-    $("#Chen").data(Chen)
+    $("#Chen").data("data-stats", Chen)
+    $("#CM").data("data-stats", CM)
+    $("#NS").data("data-stats", NS)
+    $("#VS").data("data-stats", VS)
 });
 
 $(document).ready(function() {
-    $("#heroes").on("click", ".hero", function() {
+    $("#heroes").on("click", ".hero", function() {      
         if ($("#radiant").contents().length == 0) {
             $(this).appendTo(("#radiant"))
-            radiant = this.data;
+            radiant = $(this).data("data-stats");
             //audio.Play(this.spawn);
         }
 
-
         else if ($("#dire").contents().length == 0) {
             $(this).appendTo(("#dire"))
+            dire = $(this).data("data-stats");
             //audio.play(this.spawn);
     }
 /*
