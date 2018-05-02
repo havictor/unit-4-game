@@ -1,7 +1,7 @@
-const Chen = {HP: 650, attack: 48, counterAttack: 50, spawn: "../images/Chen_spawn.mp3"};
-const CM = {HP: 524, attack: 44, counterAttack: 38, spawn: "../images/CM_spawn.mp3"};
-const NS = {HP: 718, attack: 61, counterAttack: 65, spawn: "../images/NS_spawn.mp3"};
-const VS = {HP: 525, attack: 39, counterAttack: 47, spawn: "../images/VS_spawn.mp3"};
+var Chen = {HP: 650, attack: 48, counterAttack: 50, spawn: "../images/Chen_spawn.mp3"};
+var CM = {HP: 524, attack: 44, counterAttack: 38, spawn: "../images/CM_spawn.mp3"};
+var NS = {HP: 718, attack: 61, counterAttack: 65, spawn: "../images/NS_spawn.mp3"};
+var VS = {HP: 525, attack: 39, counterAttack: 47, spawn: "../images/VS_spawn.mp3"};
 var radiant = {};
 var dire = {};
 var attackCount = 0;
@@ -23,7 +23,7 @@ $(document).ready(function() {
             //audio.Play(this.spawn);
         }
 
-        else if ($("#dire").contents().length == 0) {
+         else if ($("#dire").contents().length == 0) {
             $(this).appendTo(("#dire"))
             dire = $(this).data("data-stats");
             //audio.play(this.spawn);
@@ -40,27 +40,33 @@ $(document).ready(function() {
 });
 
 
-
-
-
-
-$("#attack").on("click", function() {
-    attackCount++;
-    dire.hp = dire.hp - radiant.attack;
-    if (dire.hp <= 0) {
-        //delete dire hero or move and hide
-        enemyCount--
+$(document).ready(function() {
+    $("#attack").click(function() {
+        if ($("#radiant").contents().length == 0) {
+            alert("Choose Your Hero");
     }
-    else {
-        radiant.hp = radiant.hp - dire.counterAttack
-        if (radiant.hp <= 0) {
-            alert("Game Over")
+        else if ($("#dire").contents().length == 0) {
+            alert("Choose Your Enemy")
+    }
+        else {
+            attackCount++;
+            dire.HP = (dire.HP - (radiant.attack * attackCount));
+            if (dire.HP <= 0) {
+                //delete dire hero or move and hide
+                enemyCount--
+            }
+            else {
+                radiant.HP = radiant.HP - dire.counterAttack
+                if (radiant.HP <= 0) {
+                    alert("Game Over")
+                }
+            };
+
+        if (enemyCount = 0) {
+            alert ("You win!");
         }
-    };
-
-    if (enemyCount = 0) {
-        alert ("You win!");
-    }
+        }
+    });
 });
 
 
