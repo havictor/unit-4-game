@@ -1,7 +1,7 @@
-var Chen = {HP: 650, attack: 48, counterAttack: 50, spawn: "../images/Chen_spawn.mp3"};
-var CM = {HP: 524, attack: 44, counterAttack: 38, spawn: "../images/CM_spawn.mp3"};
-var NS = {HP: 718, attack: 61, counterAttack: 65, spawn: "../images/NS_spawn.mp3"};
-var VS = {HP: 525, attack: 39, counterAttack: 47, spawn: "../images/VS_spawn.mp3"};
+var Chen = {Name: "Chen", HP: 650, attack: 48, counterAttack: 50, spawn: "../images/Chen_spawn.mp3"};
+var CM = {Name: "Crystal Maiden", HP: 524, attack: 44, counterAttack: 38, spawn: "../images/CM_spawn.mp3"};
+var NS = {Name: "Night Stalker", HP: 718, attack: 61, counterAttack: 65, spawn: "../images/NS_spawn.mp3"};
+var VS = {Name: "Vengeful Spirit", HP: 525, attack: 39, counterAttack: 47, spawn: "../images/VS_spawn.mp3"};
 var radiant = {};
 var dire = {};
 var attackCount = 0;
@@ -20,13 +20,13 @@ $(document).ready(function() {
         if ($("#radiant").contents().length == 0) {
             $(this).appendTo(("#radiant"))
             radiant = $(this).data("data-stats");
-            //audio.Play(this.spawn);
+            //audio.Play(radiant.spawn);
         }
 
          else if ($("#dire").contents().length == 0) {
             $(this).appendTo(("#dire"))
             dire = $(this).data("data-stats");
-            //audio.play(this.spawn);
+            //audio.play(dire.spawn);
     }
 /*
 
@@ -51,13 +51,21 @@ $(document).ready(function() {
         else {
             attackCount++;
             dire.HP = (dire.HP - (radiant.attack * attackCount));
-            if (dire.HP <= 0) {
-                //delete dire hero or move and hide
+            if (dire.HP > 0) {
+                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" health remaining.")
+            }
+            else if (dire.HP <= 0) {
+                alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and has been defeated")
+                //detach() dire hero to variable, to appendTo on new game creation
                 enemyCount--
             }
             else {
-                radiant.HP = radiant.HP - dire.counterAttack
-                if (radiant.HP <= 0) {
+                radiant.HP = (radiant.HP - dire.counterAttack);
+                if (radiant.HP > 0) {
+                    alert(dire.Name+" attacked back for "+dire.counterAttack+", you have "+radiant.HP+" remaining.")
+                }
+                else {
+                    alert(dire.Name+" attacked back for "+dire.counterAttack+", and has slain you.")
                     alert("Game Over")
                 }
             };
@@ -69,10 +77,6 @@ $(document).ready(function() {
     });
 });
 
+function newGame() {
 
-//button on click, hero radiant <<attacks>>
-//dire <<counterattacks>>
-
-//if dire HP <= 0, status = hidden
-
-//if radiant <= 0, game over
+}
