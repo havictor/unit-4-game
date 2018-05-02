@@ -6,7 +6,7 @@ var radiant = {};
 var dire = {};
 var attackCount = 0;
 var selected;
-var enemyCount = 4;
+var enemyCount = 3;
 
 $(document).ready(function() {
     $("#Chen").data("data-stats", Chen)
@@ -46,7 +46,7 @@ $(document).ready(function() {
             alert("Choose Your Hero");
     }
         else if ($("#dire").contents().length == 0) {
-            alert("Choose Your Enemy")
+            alert("Choose Your Enemy");
     }
         else {
             attackCount++;
@@ -56,27 +56,29 @@ $(document).ready(function() {
             }
             else if (dire.HP <= 0) {
                 alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and has been defeated")
-                //detach() dire hero to variable, to appendTo on new game creation
+                $("#dire").contents().appendTo("#defeated") //dire hero to variable, to appendTo on new game creation
                 enemyCount--
             }
+            radiant.HP = (radiant.HP - dire.counterAttack);
+            if (radiant.HP > 0 && ("#dire").contents().length == 0) {
+                alert(dire.Name+" attacked back for "+dire.counterAttack+", you have "+radiant.HP+" remaining.")
+            }
+            if (enemyCount == 0) {
+                alert ("Radiant Victory!");
+            }
             else {
-                radiant.HP = (radiant.HP - dire.counterAttack);
-                if (radiant.HP > 0) {
-                    alert(dire.Name+" attacked back for "+dire.counterAttack+", you have "+radiant.HP+" remaining.")
-                }
-                else {
-                    alert(dire.Name+" attacked back for "+dire.counterAttack+", and has slain you.")
-                    alert("Game Over")
-                }
+                alert(dire.Name+" attacked back for "+dire.counterAttack+", and has slain you.")
+                alert("Dire Victory")
+                $("#radiant").contents().appendTo("#defeated");
+                $("#heroes").contents().appendTo("#defeated");
             };
-
-        if (enemyCount = 0) {
-            alert ("You win!");
-        }
         }
     });
 });
 
 function newGame() {
-
+    $("defeated").contents().appendTo("#heroes");
 }
+
+//to do: newGame function for resetting
+//to do: add juke option if time is available.
