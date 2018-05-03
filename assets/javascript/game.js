@@ -118,6 +118,7 @@ $(document).ready(function() {
         dire = {};
         attackCount = 0;
         enemyCount = 3;
+        $(".health").show();
     })
 });
 

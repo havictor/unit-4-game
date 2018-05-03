@@ -6,3 +6,15 @@ img {
     width: 196px;
     height: 110px;
 }
+
+body {
+    background-image: url("../images/Background.jpg");
+}
+
+div {
+    color: white;
+}
+
+.container {
+    margin-top: 25px;
+}
