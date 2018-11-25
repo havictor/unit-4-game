@@ -62,14 +62,14 @@ $(document).ready(function() {
                 attackCount++;
                 dire.HP = (dire.HP - (radiant.attack * attackCount));
                 if (dire.HP <= 0) {
-                    alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and "+dire.Name+" has been defeated")
+                    $("#combat").text("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and "+dire.Name+" has been defeated")
                     $("#dire").contents().appendTo("#defeated")
                     //
                     $(".health").show();
                     enemyCount--
                 }   
                 else {
-                    alert("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" HP remaining.");
+                    $("#combat").text("You attacked "+dire.Name+" for "+(radiant.attack * attackCount)+ " damage, and now "+dire.Name+" has "+dire.HP+" HP remaining.");
                     $("#direHealth").text("HP: "+dire.HP);
                 }
             };
@@ -84,7 +84,7 @@ $(document).ready(function() {
                     $("#heroes").contents().appendTo("#defeated");
                 }
                 else {
-                    alert(dire.Name+" attacked back for "+dire.counterAttack+" damage, you have "+radiant.HP+" HP remaining.")
+                    $("#combat").text(dire.Name+" attacked back for "+dire.counterAttack+" damage, you have "+radiant.HP+" HP remaining.")
                     $("#radiantHealth").text("HP: "+radiant.HP);
                 }
             }
